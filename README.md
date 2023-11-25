@@ -1,2 +1,0 @@
-# TheCyberSphere
-both servers.
