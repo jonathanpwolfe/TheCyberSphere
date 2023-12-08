@@ -16,22 +16,13 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "user_posts")
+@Table(name = "user_creatings")
 @AllArgsConstructor
-@NoArgsConstructor(access=AccessLevel.PRIVATE, force = true)
-public class Post {
-	
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
+public class Creatings {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
-	
-	private String title;
-	private String about;
-	
-	
 	@OneToMany
 	private List<Media> media;
-	@OneToMany
-	private List<Comment> comments;
-	
 }

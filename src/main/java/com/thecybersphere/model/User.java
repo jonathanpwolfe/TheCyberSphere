@@ -10,6 +10,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -36,9 +38,19 @@ public class User {
 	private String bio;
 	@NotNull
 	private boolean isCreator;
-	
-	@ManyToMany
+	@OneToOne
+	private Creatings creatings;
+	@OneToMany
 	@JoinTable(name = "user_friends")
 	private List<User> friends;
+	@OneToMany
+	private List<User> followers;
+	@OneToMany
+	private List<User> following;
+	@OneToMany
+	private List<User> subscribers;
+	
+	@OneToMany
+	private List<HashTag> favoriteHashtags;
 }
 

@@ -1,15 +1,24 @@
 package com.thecybersphere.model;
 
+import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@Table(name = "user_media")
+@AllArgsConstructor
+@NoArgsConstructor(access=AccessLevel.PRIVATE, force = true)
 public class Media {
 
     public enum EncodingType {
@@ -24,7 +33,8 @@ public class Media {
     private UUID id;
 
     private EncodingType encodingType = EncodingType.UNKNOWN; // Assign a default value
-
+    @OneToMany
+    private List<HashTag> hastags;
     // Constructors
     public Media() {
         // Default constructor
