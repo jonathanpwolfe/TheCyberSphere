@@ -3,10 +3,13 @@ package com.thecybersphere.model;
 import java.util.List;
 import java.util.UUID;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
@@ -33,8 +36,13 @@ public class Media {
     private UUID id;
 
     private EncodingType encodingType = EncodingType.UNKNOWN; // Assign a default value
-    @OneToMany
-    private List<HashTag> hastags;
+    
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<HashTag> hashtags;
+    
+    @ManyToOne
+    @JoinColumn(name = "post_id") // This should match the name of the column in the "comments" table
+    private Post post;
     // Constructors
     public Media() {
         // Default constructor

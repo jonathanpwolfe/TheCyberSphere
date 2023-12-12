@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -17,7 +19,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "post_comments")
+@Table(name = "comments")
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public class Comment {
@@ -33,7 +35,11 @@ public class Comment {
     
     private long likes;
     private long dislikes;
-
+    
+    @ManyToOne
+    @JoinColumn(name = "post_id") // This should match the name of the column in the "comments" table
+    private Post post;
+    
     // Corrected constructor
     public Comment() {
         // Default constructor

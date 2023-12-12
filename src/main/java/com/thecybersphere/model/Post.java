@@ -1,7 +1,9 @@
-package com.thecybersphere.model;
+ package com.thecybersphere.model;
 
 import java.util.List;
 import java.util.UUID;
+
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,20 +20,18 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "user_posts")
 @AllArgsConstructor
-@NoArgsConstructor(access=AccessLevel.PRIVATE, force = true)
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public class Post {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private UUID id;
-	
-	private String title;
-	private String about;
-	
-	
-	@OneToMany
-	private List<Media> media;
-	@OneToMany
-	private List<Comment> comments;
-	
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+    private String title;
+    private String about;
+
+    @OneToMany(mappedBy = "post") // Use mappedBy to specify the inverse side of the relationship
+    private List<Media> media;
+
+    @OneToMany(mappedBy = "post") // Use mappedBy to specify the inverse side of the relationship
+    private List<Comment> comments;
 }

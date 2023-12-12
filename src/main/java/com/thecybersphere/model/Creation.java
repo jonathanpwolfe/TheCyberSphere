@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "user_creatings")
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public class Creatings {
+public class Creation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;

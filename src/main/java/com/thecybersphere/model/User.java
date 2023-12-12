@@ -4,12 +4,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -38,8 +38,10 @@ public class User {
 	private String bio;
 	@NotNull
 	private boolean isCreator;
-	@OneToOne
-	private Creatings creatings;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "user_posts")
+	private List<Post> posts;
+
 	@OneToMany
 	@JoinTable(name = "user_friends")
 	private List<User> friends;

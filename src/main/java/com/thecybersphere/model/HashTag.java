@@ -28,4 +28,5 @@ public class HashTag {
     @NotNull
     @Size(min = 2)
     private String hashTag;
+    private long numberTimesUsed;
 }
