@@ -1,8 +1,12 @@
 package com.thecybersphere.model;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -25,8 +29,21 @@ import lombok.NoArgsConstructor;
 @Table(name = "app_user")
 @AllArgsConstructor
 @NoArgsConstructor(access=AccessLevel.PRIVATE, force = true)
-public class User{
-	
+public class CyberSphereUser extends User{
+
+
+	public CyberSphereUser(String username, String password, boolean enabled, boolean accountNonExpired,
+			boolean credentialsNonExpired, boolean accountNonLocked,
+			Collection<? extends GrantedAuthority> authorities) {
+		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+		// TODO Auto-generated constructor stub
+	}
+
+	public CyberSphereUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+		super(username, password, authorities);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
@@ -44,13 +61,13 @@ public class User{
 
 	@OneToMany
 	@JoinTable(name = "user_friends")
-	private List<User> friends;
+	private List<CyberSphereUser> friends;
 	@OneToMany
-	private List<User> followers;
+	private List<CyberSphereUser> followers;
 	@OneToMany
-	private List<User> following;
+	private List<CyberSphereUser> following;
 	@OneToMany
-	private List<User> subscribers;
+	private List<CyberSphereUser> subscribers;
 	
 	@OneToMany
 	private List<HashTag> favoriteHashtags;
