@@ -1,5 +1,6 @@
 package com.thecybersphere.model;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -39,18 +40,20 @@ public class CyberSphereUser extends User{
 		// TODO Auto-generated constructor stub
 	}
 
+
 	public CyberSphereUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, authorities);
-		// TODO Auto-generated constructor stub
+		this.userDetails =  new CyberSphereUserDetails(username, password);
+		this.createdAt = createdAt.now();
+		
 	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
-	@NotNull
-	@Size(min=5, max = 22)
-	private String username;
-	private Date createdAt = new Date();
+	@OneToOne(cascade = CascadeType.ALL)
+	private CyberSphereUserDetails userDetails;
+	private LocalDateTime createdAt;
 	private Date lastOnline = new Date();
 	private String bio;
 	@NotNull
@@ -71,5 +74,15 @@ public class CyberSphereUser extends User{
 	
 	@OneToMany
 	private List<HashTag> favoriteHashtags;
+
+	public void setUsername(String string) {
+		this.userDetails.setUsername( string);
+		
+	}
+
+	public void setPassword(String string) {
+		this.userDetails.setPassword(string);
+		
+	}
 }
 

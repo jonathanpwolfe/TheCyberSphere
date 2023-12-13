@@ -2,14 +2,12 @@ package com.thecybersphere.repo;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.thecybersphere.model.UserInfo;
-
-import java.util.List;
+import com.thecybersphere.model.CyberSphereUserDetails;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface LoginRepository extends CrudRepository<UserInfo, UUID> {
+public interface LoginRepository extends CrudRepository<CyberSphereUserDetails, UUID> {
 
-    Optional<UserInfo> findByUsername(String username);
+    Optional<CyberSphereUserDetails> findByUsername(String username);
 
 }
