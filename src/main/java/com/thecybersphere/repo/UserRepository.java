@@ -14,7 +14,7 @@ import org.springframework.data.repository.query.Param;
 import com.thecybersphere.model.CyberSphereUser;
 
                                       
-public interface CyberSphereUserRepository extends CrudRepository<CyberSphereUser, UUID> {
+public interface UserRepository extends CrudRepository<CyberSphereUser, UUID> {
     Optional<CyberSphereUser> findByUsername(String username);
 
     List<CyberSphereUser> findByCreatedAtAfter(Date date);
@@ -28,7 +28,6 @@ public interface CyberSphereUserRepository extends CrudRepository<CyberSphereUse
     List<CyberSphereUser> findByFriendsContaining(CyberSphereUser friend);
 
     List<CyberSphereUser> findByUsernameAndLastOnline(String username, Date lastOnline);
- 
 
     List<CyberSphereUser> findAllByOrderByCreatedAtDesc();
 
