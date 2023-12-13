@@ -13,6 +13,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.thecybersphere.model.User;
 
+                                      
 public interface UserRepository extends CrudRepository<User, UUID> {
     Optional<User> findByUsername(String username);
 

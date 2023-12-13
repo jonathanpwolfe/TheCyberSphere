@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "app_user")
 @AllArgsConstructor
 @NoArgsConstructor(access=AccessLevel.PRIVATE, force = true)
-public class User {
+public class User{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
